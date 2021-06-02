@@ -81,5 +81,7 @@
       "pre-commit": "git add . && lint-staged"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "rollup-plugin-commonjs": "^10.1.0"
+  }
 }

@@ -3,21 +3,26 @@
   "license": "MIT",
   "version": "2.0.3",
   "description": "An advanced text layout framework",
-  "main": "./lib/index.js",
   "contributors": [
     "Devon Govett <devongovett@gmail.com>",
     "Diego Muracciole <diegomuracciole@gmail.com>"
   ],
+  "main": "lib/textkit.cjs.js",
+  "module": "lib/textkit.es.js",
+  "browser": {
+    "./lib/textkit.es.js": "./lib/textkit.browser.es.js",
+    "./lib/textkit.cjs.js": "./lib/textkit.browser.cjs.js"
+  },
   "scripts": {
     "test": "jest",
-    "build": "rimraf ./lib && babel src --out-dir lib",
-    "watch": "rimraf ./lib && babel src --out-dir lib --watch"
+    "build": "rimraf ./lib && rollup -c",
+    "watch": "rimraf ./lib && rollup -c -w"
   },
   "files": [
     "lib"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
+    "@babel/runtime": "^7.14.0",
     "@react-pdf/unicode-properties": "^2.4.1",
     "hyphen": "^1.6.4",
     "ramda": "^0.26.1"
