@@ -1,4 +1,3 @@
-import BlobStream from 'blob-stream';
 import FontStore from '@react-pdf/font';
 import renderPDF from '@react-pdf/render';
 import PDFDocument from '@react-pdf/pdfkit';
@@ -55,25 +54,6 @@ const pdf = initialValue => {
     }
   };
 
-  const toBlob = async () => {
-    const instance = await render();
-    const stream = instance.pipe(BlobStream());
-
-    return new Promise((resolve, reject) => {
-      stream.on('finish', () => {
-        try {
-          const blob = stream.toBlob('application/pdf');
-          callOnRender({ blob });
-          resolve(blob);
-        } catch (error) {
-          reject(error);
-        }
-      });
-
-      stream.on('error', reject);
-    });
-  };
-
   const toBuffer = async () => {
     callOnRender();
     return render();
@@ -113,7 +93,6 @@ const pdf = initialValue => {
   return {
     on,
     container,
-    toBlob,
     toBuffer,
     toString,
     removeListener,
